@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>The Hacker Tools, by Havre-lab</title>
+        <script>
+            let hackerStyle='javascript:(function(){let nodeList=document.querySelectorAll("*"); for (let i=0; i<nodeList.length; i++){nodeList[i].style.fontFamily="monospace";nodeList[i].style.color="#20C20E";nodeList[i].style.backgroundColor="black"; document.body.contentEditable=true; }})();'
+            let spinPage='javascript:(function() {     let deg=0;     function spin(){         document.body.style.transform=`rotate(${deg}deg)`;         deg++;}     setInterval(spin, 10); })();'
+
+            let chars=0;
+            let oldChars=0;
+            function typing(text,textType="p",attributes=[],speed=35){
+                let appendArea=document.getElementById("main");
+                let appendSpace=document.createElement(textType);
+                for (let i=0; i<attributes.length;i++){
+                    appendSpace.setAttribute(attributes[i][0],attributes[i][1])
+                }
+                appendArea.appendChild(appendSpace);
+                for(let i=0; i<text.length; i++){
+                    setTimeout(function(){appendSpace.innerHTML+=text.at(i);},speed*i)
+                }
+            }
+            function typeTime(text,textType="p",attributes=[],speed=35){
+                oldChars=chars;
+                chars+=text.length+5;
+                setTimeout(
+                    function(){typing(text,textType,attributes,speed)},oldChars*speed
+                )
+            }
+        </script>
+        <script>
+            function copyText(text){
+                window.navigator.clipboard.writeText(text);
+            }
+            function verifyPass(id,pass,func){
+                if(document.getElementById(id).value==pass){
+                    alert("Very well. You may pass.");
+                    chars=0;
+                    oldChars=0;
+                    func();
+                }
+                else{
+                    alert("Wrong password.");
+                }
+            }
+            function main(){
+                typeTime("Hacker Tools","h1")
+                typeTime("Hello.")
+                typeTime("Welcome to Hacker Tools.")
+                typeTime("Enjoy your stay.")
+                typeTime("In order to continue to Basic Tools, Volume 1, you must have a password.")
+                typeTime("","input",[["id","password1"],["type","password"]])
+                typeTime("Submit","button",[["onclick","verifyPass('password1','basic',volume1)"]])
+                
+            }
+            function volume1(){
+                typeTime("Basic Tools, Volume 1","h3")
+                typeTime("How to use a Bookmarklet","h5")
+                typeTime("First, copy and paste the bookmarklet into your clipboard. Then, copy and paste the URL into a new bookmarklet,\
+                and click on it on a page that is not a special page like the new tab, and page unique to that browser, like all chrome: pages.\
+                Note: Some school management extensions, like Hapara Highlights, have develop systems to prevent bookmarklets, and may stop these\
+                tools from working.")
+                typeTime("Page Edit + Hacker Style","h5")
+                typeTime("This will change the page into hacker green and black, but might not work on some pages.\
+                This will also make make the webpage text editable.")
+                typeTime(hackerStyle)
+                typeTime("Or just copy to clipboard:")
+                typeTime("Copy to clipboard","button",[["onclick","copyText(hackerStyle);"]])
+                typeTime("Spin Page","h5")
+                typeTime("This will constantly rotate the page.")
+                typeTime(spinPage)
+                typeTime("Or just copy to clipboard:")
+                typeTime("Copy to clipboard","button",[["onclick","copyText(spinPage);"]])
+                typeTime("That is it for Volume 1! To proceed to More Powerful Tools, Volume 2, you need another password.")
+                typeTime("","input",[["id","password2"],["type","password"]])
+                typeTime("Submit","button",[["onclick","verifyPass('password2','power',volume2)"]])
+
+            }
+            function volume2(){
+                typeTime("Sorry, but Volume 2 has not been released yet. Check again in the future.")
+            }
+        </script>
+        <style>
+            body{
+                background-color:black;
+            }
+            p,h1,h2,h3,h4,h5,h6,span,button{
+                color: #20c20e;
+                font-family:monospace;
+            }
+            button,input{
+                background-color:rgb(46, 46, 46);
+                border:none;
+                cursor:pointer;
+            }
+            input{
+                margin-right:20px;
+            }
+        </style>
+        
+    </head>
+    <body onload="main();">
+        <div id="main">
+        </div>
+    </body>
+</html>
