@@ -5,11 +5,12 @@
         <script>
             let hackerStyle='javascript:(function(){let nodeList=document.querySelectorAll("*"); for (let i=0; i<nodeList.length; i++){nodeList[i].style.fontFamily="monospace";nodeList[i].style.color="#20C20E";nodeList[i].style.backgroundColor="black"; document.body.contentEditable=true; }})();'
             let spinPage='javascript:(function() {     let deg=0;     function spin(){         document.body.style.transform=`rotate(${deg}deg)`;         deg++;}     setInterval(spin, 10); })();'
+            let rotateEvery='javascript:(function() {let nodeList;     let deg=0;     function spin(){    nodeList=document.querySelectorAll("*");    for (let item=0; item<nodeList.length; item++){    nodeList[item].style.transform=`rotate(${deg}deg)`; }        deg++;}     setInterval(spin, 10); })();'
 
             let chars=0;
             let oldChars=0;
-            function typing(text,textType="p",attributes=[],speed=35){
-                let appendArea=document.getElementById("main");
+            function typing(text,textType="p",attributes=[],destination="main",speed=20){
+                let appendArea=document.getElementById(destination);
                 let appendSpace=document.createElement(textType);
                 for (let i=0; i<attributes.length;i++){
                     appendSpace.setAttribute(attributes[i][0],attributes[i][1])
@@ -19,11 +20,11 @@
                     setTimeout(function(){appendSpace.innerHTML+=text.at(i);},speed*i)
                 }
             }
-            function typeTime(text,textType="p",attributes=[],speed=35){
+            function typeTime(text,textType="p",attributes=[],destination="main",speed=20){
                 oldChars=chars;
                 chars+=text.length+5;
                 setTimeout(
-                    function(){typing(text,textType,attributes,speed)},oldChars*speed
+                    function(){typing(text,textType,attributes,destination,speed)},oldChars*speed
                 )
             }
         </script>
@@ -70,13 +71,20 @@
                 typeTime(spinPage)
                 typeTime("Or just copy to clipboard:")
                 typeTime("Copy to clipboard","button",[["onclick","copyText(spinPage);"]])
-                typeTime("That is it for Volume 1! To proceed to More Powerful Tools, Volume 2, you need another password.")
+                typeTime("That is it for Volume 1! To proceed to Intermediate Tools, Volume 2, you need another password.")
                 typeTime("","input",[["id","password2"],["type","password"]])
-                typeTime("Submit","button",[["onclick","verifyPass('password2','power',volume2)"]])
+                typeTime("Submit","button",[["onclick","verifyPass('password2','encrypt',volume2)"]])
 
             }
             function volume2(){
-                typeTime("Sorry, but Volume 2 has not been released yet. Check again in the future.")
+                typeTime("Intermediate Tools, Volume 2","h3")
+                typeTime("These tools are more powerful, or more complex.")
+                typeTime("Rotate Everything","h5")
+                typeTime("This will rotate all elements in the tab, causing lag in more complex and layered websites.")
+                typeTime(rotateEvery)
+                typeTime("Or just copy to clipboard:")
+                typeTime("Copy to clipboard","button",[["onclick","copyText(rotateEvery);"]])
+
             }
         </script>
         <style>
