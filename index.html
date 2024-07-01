@@ -5,6 +5,7 @@
         <script>
             let hackerStyle='javascript:(function(){let nodeList=document.querySelectorAll("*"); for (let i=0; i<nodeList.length; i++){nodeList[i].style.fontFamily="monospace";nodeList[i].style.color="#20C20E";nodeList[i].style.backgroundColor="black"; document.body.contentEditable=true; }})();'
             let spinPage='javascript:(function() {     let deg=0;     function spin(){         document.body.style.transform=`rotate(${deg}deg)`;         deg++;}     setInterval(spin, 10); })();'
+            let titleChange='javascript:(function(){    document.querySelector("title").innerHTML=prompt("What do you want to change the website title to?")})()'
             let rotateEvery='javascript:(function() {let nodeList;     let deg=0;     function spin(){    nodeList=document.querySelectorAll("*");    for (let item=0; item<nodeList.length; item++){    nodeList[item].style.transform=`rotate(${deg}deg)`; }        deg++;}     setInterval(spin, 10); })();'
 
             let chars=0;
@@ -71,6 +72,11 @@
                 typeTime(spinPage)
                 typeTime("Or just copy to clipboard:")
                 typeTime("Copy to clipboard","button",[["onclick","copyText(spinPage);"]])
+                typeTime("Title Change","h5")
+                typeTime("This will allow you to change the title of the website. The title is what appears in the navigation bar.")
+                typeTime(titleChange)
+                typeTime("Or just copy to clipboard:")
+                typeTime("Copy to clipboard","button",[["onclick","copyText(titleChange)"]])
                 typeTime("That is it for Volume 1! To proceed to Intermediate Tools, Volume 2, you need another password.")
                 typeTime("","input",[["id","password2"],["type","password"]])
                 typeTime("Submit","button",[["onclick","verifyPass('password2','encrypt',volume2)"]])
